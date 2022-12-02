@@ -61,5 +61,19 @@ fn main() -> Result<(), Error> {
     println!("The elf with the most calories is elf number {}", most_elf_calories_index);
     println!("That elf has {:#?} calories", elves.get(&most_elf_calories_index.to_string()).unwrap());
 
+
+    println!("\n\nPart 2");
+    let mut part2_sum = 0;
+    for i in &elves {
+        // manual guess and check until 3 values
+        // if i could sort the dictionary and get the last 3 values or base it off the highest i would
+        // but both ideal solutions above have problems - can't sort dictionary (?) and rust can't find a highest
+        if i.val.as_str() > "66000" {
+            //println!("{:#?}", i.val.as_str())
+            part2_sum += i.val.parse::<u64>().unwrap();
+        }
+    }
+    part2_sum -= 8736;  // the weird extra one that sits in, above issues in Part 1 apply here
+    println!("most top 3 elves carrying in total: {}", part2_sum);
     Ok(())
 }
